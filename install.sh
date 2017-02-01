@@ -7,6 +7,9 @@
 #WHATSAPP : +60162771064
 #-----------------------------
 
+myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
+myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
+
 #info
 echo "=================================================="
 echo "SUPPORT SERVER GOOGLE CLOUD/DIGITAL OCEAN/LINODE/etc"
@@ -170,11 +173,11 @@ clear
 echo "===============================================--"
 echo "                             "
 echo "  === AUTOSCRIPT FROM MKSSHVPN === "
-echo "WEBMIN : http://ipserver:10000 "
+echo "WEBMIN : http://$myip:10000 "
 echo "OPENVPN PORT : 59999"
 echo "DROPBEAR PORT : 22,443"
 echo "PROXY PORT : 7166,8080"
-echo "Config OPENVPN : http://ipserver/max.ovpn"
+echo "Config OPENVPN : http://$myip/max.ovpn"
 echo "SERVER TIME/LOCATION : KUALA LUMPUR +8"
 echo "TORRENT PORT HAS BLOCK BY SCRIPT"
 echo "CONTACT OWNER SCRIPT"
