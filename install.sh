@@ -156,8 +156,7 @@ useradd -m -g users -s /bin/bash mklet
 echo "mklet:mklet" | chpasswd
 
 clear
-echo 
-"COMPLETE 100%"
+echo "COMPLETE 100%"
 
 echo "RESTART SERVICE"
 service openvpn-nl restart
