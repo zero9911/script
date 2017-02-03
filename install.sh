@@ -70,7 +70,7 @@ rm -f /etc/squid3/squid.conf
 
 #restoring squid config with open port proxy 8080,7166
 wget -P /etc/squid3/ "https://raw.githubusercontent.com/zero9911/script/master/script/squid.conf"
-sed -i "s/ipserver/$IP/g" /etc/squid3/squid.conf
+sed -i "s/$myip/$IP/g" /etc/squid3/squid.conf
 service squid3 restart
 cd
 
