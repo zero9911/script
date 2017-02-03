@@ -1,11 +1,4 @@
 #!/bin/bash
-#-----------------------------
-#CREATE BY MKSSHVPN AUTOSCRIPT
-#Version : DEBIAN 7.X ONLY !!
-#LAST UPDATE : 30/1/2017
-#TELEGRAM : @mk_let
-#WHATSAPP : +60162771064
-#-----------------------------
 
 myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
 myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
