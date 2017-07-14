@@ -63,12 +63,15 @@ function used_data(){
 }
 
 clear
-echo "MKSSHVPN AUTOSCRIPT MENU 2017
+echo "####################################
+
+MKSSHVPN AUTOSCRIPT MENU 2017
 
 For support:-
 MKSSHVPN
 Telegram : @mk_let
 Whatsapp : 0162771064
+#######################################
 
 ";
 PS3='Please enter your choice: '
