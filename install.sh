@@ -6,7 +6,7 @@ myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
 #info
 echo "=================================================="
 echo "SUPPORT SERVER GOOGLE CLOUD/DIGITAL OCEAN/LINODE/etc"
-echo "DEBIAN 7.X 64/32 BIT ONLY"
+echo "DEBIAN 8.X 64/32 BIT ONLY"
 echo "=================================================="
 
 clear 
@@ -32,7 +32,7 @@ apt-get -y wget
 #needed by openvpn-nl
 apt-get -y install apt-transport-https
 #adding source list
-echo "deb https://openvpn.fox-it.com/repos/deb wheezy main" > /etc/apt/sources.list.d/foxit.list
+echo "deb https://openvpn.fox-it.com/repos/deb jessie main" > /etc/apt/sources.list.d/foxit.list
 apt-get update
 wget https://openvpn.fox-it.com/repos/fox-crypto-gpg.asc
 apt-key add fox-crypto-gpg.asc
