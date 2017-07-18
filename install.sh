@@ -32,7 +32,7 @@ apt-get -y wget
 #needed by openvpn-nl
 apt-get -y install apt-transport-https
 #adding source list
-echo "deb https://openvpn.fox-it.com/repos/deb jessie main" > /etc/apt/sources.list.d/foxit.list
+echo "deb https://openvpn.fox-it.com/repos/deb wheezy main" > /etc/apt/sources.list.d/foxit.list
 apt-get update
 wget https://openvpn.fox-it.com/repos/fox-crypto-gpg.asc
 apt-key add fox-crypto-gpg.asc
