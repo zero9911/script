@@ -31,7 +31,7 @@ COMPLETE 15%
 
 #install sudo
 apt-get -y install sudo
-apt-get -y wget
+apt-get -y install wget
 
 #installing squid3
 aptitude -y install squid3
