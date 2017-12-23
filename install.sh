@@ -32,42 +32,7 @@ COMPLETE 15%
 #install sudo
 apt-get -y install sudo
 apt-get -y wget
- 
-#needed by openvpn-nl
-apt-get -y install apt-transport-https
-#adding source list
-echo "deb https://openvpn.fox-it.com/repos/deb wheezy main" > /etc/apt/sources.list.d/foxit.list
-apt-get update
-wget https://openvpn.fox-it.com/repos/fox-crypto-gpg.asc
-apt-key add fox-crypto-gpg.asc
-apt-get update
-cd /root
-#installing normal openvpn, easy rsa & openvpn-nl
-apt-get install easy-rsa -y
-apt-get install openvpn -y
-apt-get install openvpn-nl -y
-#ipforward
-sysctl -w net.ipv4.ip_forward=1
-sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
-iptables -F
-iptables -t nat -F
-iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -o eth0 -j MASQUERADE
-iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth0 -j MASQUERADE
-iptables -t nat -A POSTROUTING -s 172.1.0.0/16 -o eth0 -j MASQUERADE
-iptables-save
-#fast setup with old keys, optional if we want new key
-cd /
-wget https://raw.githubusercontent.com/zero9911/script/master/script/ovpn.tar
-tar -xvf ovpn.tar
-rm ovpn.tar
-service openvpn-nl restart
-openvpn-nl --remote CLIENT_IP --dev tun0 --ifconfig 10.9.8.1 10.9.8.2
-#get ip address
-apt-get -y install aptitude curl
 
-if [ "$IP" = "" ]; then
-        IP=$(curl -s ifconfig.me)
-fi
 #installing squid3
 aptitude -y install squid3
 rm -f /etc/squid3/squid.conf
@@ -177,7 +142,6 @@ echo
 "COMPLETE 100%"
 
 echo "RESTART SERVICE"
-service openvpn-nl restart
 service squid3 restart
 service vnstat restart
 service webmin restart
@@ -194,7 +158,6 @@ echo "WEBMIN : http://ipserver:10000 "
 echo "OPENVPN PORT : 59999"
 echo "DROPBEAR PORT : 22,443"
 echo "PROXY PORT : 7166,8080"
-echo "Config OPENVPN : http://ipserver/max.ovpn"
 echo "SERVER TIME/LOCATION : KUALA LUMPUR +8"
 echo "TORRENT PORT HAS BLOCK BY SCRIPT"
 echo "CONTACT OWNER SCRIPT"
