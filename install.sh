@@ -33,6 +33,16 @@ COMPLETE 15%
 apt-get -y install sudo
 apt-get -y install wget
 
+#iptables
+sysctl -w net.ipv4.ip_forward=1
+sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
+iptables -F
+iptables -t nat -F
+iptables -t nat -A POSTROUTING -s 10.8.0.0/16 -o eth0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 172.16.0.0/16 -o eth0 -j MASQUERADE
+iptables -t nat -A POSTROUTING -s 172.1.0.0/16 -o eth0 -j MASQUERADE
+iptables-save
+
 #installing squid3
 aptitude -y install squid3
 rm -f /etc/squid3/squid.conf
@@ -42,6 +52,15 @@ wget -P /etc/squid3/ "https://raw.githubusercontent.com/zero9911/script/master/s
 sed -i "s/ipserver/$IP/g" /etc/squid3/squid.conf
 service squid3 restart
 cd
+clear
+
+#Tunnel
+apt-get install stunnel4 -y
+wget -P /etc/stunnel/ "https://raw.githubusercontent.com/zero9911/script/master/script/stunnel.conf"
+openssl genrsa -out key.pem 2048
+wget -P /etc/stunnel/ "https://raw.githubusercontent.com/zero9911/script/master/script/stunnel.pem"
+sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
+clear
 
 #install vnstat
 apt-get -y install vnstat
@@ -158,6 +177,7 @@ echo "WEBMIN : http://ipserver:10000 "
 echo "OPENVPN PORT : 59999"
 echo "DROPBEAR PORT : 22,443"
 echo "PROXY PORT : 7166,8080"
+echo "SSL/TLS PORT : 4321"
 echo "SERVER TIME/LOCATION : KUALA LUMPUR +8"
 echo "TORRENT PORT HAS BLOCK BY SCRIPT"
 echo "CONTACT OWNER SCRIPT"
