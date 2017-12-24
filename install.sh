@@ -60,6 +60,7 @@ wget -P /etc/stunnel/ "https://raw.githubusercontent.com/zero9911/script/master/
 openssl genrsa -out key.pem 2048
 wget -P /etc/stunnel/ "https://raw.githubusercontent.com/zero9911/script/master/script/stunnel.pem"
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
+/etc/init.d/stunnel4 restart
 clear
 
 #install vnstat
